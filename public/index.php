@@ -7,6 +7,9 @@ require_once '../config/view.php';
 require_once '../config/router.php';
 require_once '../config/container.php';
 
+$dotenv = new \Dotenv\Dotenv(__DIR__ . '/../');
+$dotenv->load();
+
 $serverRequest = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
 $matcher = $routerContainer->getMatcher();
 

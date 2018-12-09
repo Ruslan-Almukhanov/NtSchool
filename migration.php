@@ -34,33 +34,40 @@ require_once 'config/database.php';
 //    $table->primary(['post_id','category_id']);
 //});
 
-$category = new \NtSchool\Model\Category();
-$category->title = 'Category 1';
-$category->key = 'category-1';
-$category->save();
+//$category = new \NtSchool\Model\Category();
+//$category->title = 'Category 1';
+//$category->key = 'category-1';
+//$category->save();
+//
+//$category = new \NtSchool\Model\Category();
+//$category->title = 'Category 2';
+//$category->key = 'category-2';
+//$category->save();
+//
+//$category = new \NtSchool\Model\Category();
+//$category->title = 'Category 3';
+//$category->key = 'category-3';
+//$category->save();
+//
+//$data = [
+//    'title' => 'Post',
+//    'description' => 'Post Description',
+//    'content' => 'Post Content',
+//    'cover' => 'http://'
+//];
+//
+//for ($counter = 1; $counter <= 15; $counter ++) {
+//    $post = new \NtSchool\Model\Post();
+//    $post->title = $data['title'] . ' ' . $counter;
+//    $post->description = $data['description'] . ' ' . $counter;
+//    $post->content = $data['content'] . ' ' . $counter;
+//    $post->cover = $data['cover'] . ' ' . $counter;
+//    $post->save();
+//}
 
-$category = new \NtSchool\Model\Category();
-$category->title = 'Category 2';
-$category->key = 'category-2';
-$category->save();
-
-$category = new \NtSchool\Model\Category();
-$category->title = 'Category 3';
-$category->key = 'category-3';
-$category->save();
-
-$data = [
-    'title' => 'Post',
-    'description' => 'Post Description',
-    'content' => 'Post Content',
-    'cover' => 'http://'
-];
-
-for ($counter = 1; $counter <= 15; $counter ++) {
-    $post = new \NtSchool\Model\Post();
-    $post->title = $data['title'] . ' ' . $counter;
-    $post->description = $data['description'] . ' ' . $counter;
-    $post->content = $data['content'] . ' ' . $counter;
-    $post->cover = $data['cover'] . ' ' . $counter;
-    $post->save();
-}
+Illuminate\Database\Capsule\Manager::schema()->create('comments', function ($table) {
+    $table->increments('id');
+    $table->string('author');
+    $table->string('content');
+    $table->timestamps();
+});

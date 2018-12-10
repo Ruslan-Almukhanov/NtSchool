@@ -30,12 +30,15 @@ final class BlogAction
           $postsPerPage,
           $page
         );
+        $allpost = new Post();
+        $all = $allpost->categories();
 
         $comments = Comment::all();
         return $this->renderer->make('blog',[
             'title' => 'Блог',
             'posts' => $posts,
             'total' => round($total[0]->counter / $postsPerPage),
+            'cat' => $all,
             'comments' => $comments
         ]);
     }

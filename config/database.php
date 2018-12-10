@@ -6,10 +6,10 @@ $capsule = new Capsule;
 
 $capsule->addConnection([
     'driver'    => 'mysql',
-    'host'      => 'rus',
-    'database'  => 'ntsholl',
-    'username'  => 'root',
-    'password'  => '',
+    'host'      => env('DATABASE_HOST'),
+    'database'  => env('DATABASE_DBNAME'),
+    'username'  => env('DATABASE_USERNAME'),
+    'password'  => env('DATABASE_PASSWORD'),
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',

@@ -17,17 +17,17 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="/css/fonts.css">
     @stack('styles')
-    <link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css" class="color-switcher-link">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
 
     <!--[if lt IE 9]>
-    <script src="js/vendor/html5shiv.min.js"></script>
-    <script src="js/vendor/respond.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/js/vendor/html5shiv.min.js"></script>
+    <script src="/js/vendor/respond.min.js"></script>
+    <script src="/js/vendor/jquery-1.12.4.min.js"></script>
     <![endif]-->
 
 </head>
@@ -818,116 +818,20 @@
                     <aside class="col-sm-5 col-md-4 col-lg-4">
 
                         <div class="widget widget_apsc_widget">
-                            <h3 class="widget-title poppins">Get In Touch</h3>
+                            <h3 class="widget-title poppins">Categories</h3>
                             <div class="apsc-icons-wrapper clearfix apsc-theme-4">
+                                @foreach($cats as $category)
+
                                 <div class="apsc-each-profile">
-                                    <a class="apsc-facebook-icon clearfix" href="#">
+                                    <a class="apsc-comment-icon clearfix" href="/blog/{{ $category->key }}">
                                         <div class="apsc-inner-block">
 												<span class="social-icon">
-													<i class="fa fa-facebook apsc-facebook"></i>
-													<span class="media-name">Facebook</span>
+													<span class="media-name">{{ $category->title }}</span>
 												</span>
-                                            <span class="apsc-count">9.8K</span>
-                                            <span class="apsc-media-type">Fans</span>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-twitter-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="fa fa-twitter apsc-twitter"></i>
-													<span class="media-name">Twitter</span>
-												</span>
-                                            <span class="apsc-count">4.9K</span>
-                                            <span class="apsc-media-type">Followers</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-google-plus-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-googlePlus fa fa-google-plus"></i>
-													<span class="media-name">google+</span>
-												</span>
-                                            <span class="apsc-count">10.1M</span>
-                                            <span class="apsc-media-type">Followers</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-instagram-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-instagram fa fa-instagram"></i>
-													<span class="media-name">Instagram</span>
-												</span>
-                                            <span class="apsc-count">4</span>
-                                            <span class="apsc-media-type">Followers</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-youtube-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-youtube fa fa-youtube"></i>
-													<span class="media-name">Youtube</span>
-												</span>
-                                            <span class="apsc-count">2.2K</span>
-                                            <span class="apsc-media-type">Subscriber</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-soundcloud-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-soundcloud fa fa-soundcloud"></i>
-													<span class="media-name">Soundcloud</span>
-												</span>
-                                            <span class="apsc-count">8K</span>
-                                            <span class="apsc-media-type">Followers</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-dribble-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-dribbble fa fa-dribbble"></i>
-													<span class="media-name">dribble</span>
-												</span>
-                                            <span class="apsc-count">0</span>
-                                            <span class="apsc-media-type">Followers</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-edit-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-posts fa fa-edit"></i>
-													<span class="media-name">Post</span>
-												</span>
-                                            <span class="apsc-count">1</span>
-                                            <span class="apsc-media-type">Post</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="apsc-each-profile">
-                                    <a class="apsc-comment-icon clearfix" href="#">
-                                        <div class="apsc-inner-block">
-												<span class="social-icon">
-													<i class="apsc-comments fa fa-comments"></i>
-													<span class="media-name">Comment</span>
-												</span>
-                                            <span class="apsc-count">0</span>
-                                            <span class="apsc-media-type">Comments</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                    @endforeach
 
                             </div>
 
@@ -1182,8 +1086,8 @@
 </div>
 <!-- eof #canvas -->
 
-<script src="js/compressed.js"></script>
-<script src="js/main.js"></script>
+<script src="/js/compressed.js"></script>
+<script src="/js/main.js"></script>
 
 
 </body>

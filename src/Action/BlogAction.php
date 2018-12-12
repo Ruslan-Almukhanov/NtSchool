@@ -3,6 +3,7 @@ namespace NtSchool\Action;
 
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Pagination\Paginator;
+use NtSchool\Model\Category;
 use NtSchool\Model\Comment;
 use NtSchool\Model\Post;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,26 +20,47 @@ final class BlogAction
 
     public function __invoke(ServerRequestInterface $request)
     {
+//        $category = Category::where('key', '=', $request->getAttribute('category'));
+//
+//        $page = $request->getQueryParams()['page'] ?? 1;
+//        $postsPerPage = 3;
+//        $offset = $page == 1 ? 0 : ($page - 1) * $postsPerPage;
+//
+//        $total = Manager::select('select Count(*) as counter from posts');
+
+        $categories = Category::all();
+
         $page = $request->getQueryParams()['page'] ?? 1;
         $postsPerPage = 3;
         $offset = $page == 1 ? 0 : ($page - 1) * $postsPerPage;
 
-        $total = Manager::select('select Count(*) as counter from posts');
+        $query = Post::skip($offset)->take($postsPerPage);
+        $total = Post::count();
+
+        $category = Category::where('key', '=', $request->getAttribute('category'))->first();
+        if ($category !== null) {
+            $query = $query->whereHas('categories', function($query) use ($category) {
+                $query->where('id', '=', $category->id);
+            });
+
+            $total = Manager::table('posts')
+                ->join('category_post', 'posts.id', '=', 'category_post.post_id')
+                ->where('category_post.category_id', '=', $category->id)
+                ->count();
+        }
 
         $posts = new Paginator(
-          Post::skip($offset)->take($postsPerPage)->get(),
+          $query->get(),
           $postsPerPage,
           $page
         );
-        $allpost = new Post();
-        $all = $allpost->categories();
 
         $comments = Comment::all();
         return $this->renderer->make('blog',[
             'title' => 'Блог',
             'posts' => $posts,
-            'total' => round($total[0]->counter / $postsPerPage),
-            'cat' => $all,
+            'total' => round($total / $postsPerPage),
+            'cats' => $categories,
             'comments' => $comments
         ]);
     }

@@ -13,6 +13,9 @@
         "guzzlehttp/psr7": "^1.5",
         "aura/di": "^3.4",
         "vlucas/phpdotenv": "^2.5",
-        "illuminate/pagination": "^5.7"
+        "illuminate/pagination": "^5.7",
+        "monolog/monolog": "^1.24",
+        "maxbanton/cwh": "1.0",
+        "katzgrau/klogger": "^1.2"
     }
 }

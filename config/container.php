@@ -4,11 +4,27 @@
 
 use Aura\Di\ContainerBuilder;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 $builder = new ContainerBuilder();
 $container = $builder->newInstance();
 
-$container->set(\NtSchool\Action\HomeAction::class, function () use ($renderer) {
-    return new \NtSchool\Action\HomeAction($renderer);
+$container->set('logger', function() {
+    $log = new Logger('name');
+    $log->pushHandler(new StreamHandler(__DIR__ . '/../resources/logs/main.log'));
+    $logger = new \NtSchool\MonologLogger($log);
+    return $logger;
+});
+
+//$container->set('logger', function() {
+//    $logger = new \NtSchool\KatzgrauLogger(
+//        new Katzgrau\KLogger\Logger(__DIR__ . '/../resources/logs'));
+//    return $logger;
+//});
+
+$container->set(\NtSchool\Action\HomeAction::class, function () use ($renderer, $container) {
+    return new \NtSchool\Action\HomeAction($renderer, $container->get('logger'));
 });
 
 $container->set(\NtSchool\Action\ShopMainAction::class, function () use ($renderer) {
@@ -78,3 +94,5 @@ $container->set(\NtSchool\Action\ContactsAction::class, function () use ($render
 $container->set(\NtSchool\Action\AdminAction::class, function () use ($renderer) {
     return new \NtSchool\Action\AdminAction($renderer);
 });
+
+

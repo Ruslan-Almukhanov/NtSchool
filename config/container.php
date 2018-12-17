@@ -10,18 +10,26 @@ use Monolog\Handler\StreamHandler;
 $builder = new ContainerBuilder();
 $container = $builder->newInstance();
 
-$container->set('logger', function() {
-    $log = new Logger('name');
-    $log->pushHandler(new StreamHandler(__DIR__ . '/../resources/logs/main.log'));
-    $logger = new \NtSchool\MonologLogger($log);
-    return $logger;
-});
+//$container->set('logger', function() {
+//    $log = new Logger('name');
+//    $log->pushHandler(new StreamHandler(__DIR__ . '/../resources/logs/main.log'));
+//    $notifier = new \Ruslan\Notifier\Adapter\MonologNotifierAdapter($log);
+//    return $notifier;
+//});
 
 //$container->set('logger', function() {
 //    $logger = new \NtSchool\KatzgrauLogger(
 //        new Katzgrau\KLogger\Logger(__DIR__ . '/../resources/logs'));
 //    return $logger;
 //});
+
+$container->set('logger', function() {
+    $notifier = new \Ruslan\Notifier\Adapter\TelegramNotifierAdapter(
+        '759235133:AAHF2_46P2PPgrtk-LhErTxn5AeoN2zaYOI',
+        '428376868'
+    );
+    return $notifier;
+});
 
 $container->set(\NtSchool\Action\HomeAction::class, function () use ($renderer, $container) {
     return new \NtSchool\Action\HomeAction($renderer, $container->get('logger'));
@@ -43,8 +51,8 @@ $container->set(\NtSchool\Action\CheckOutAction::class, function () use ($render
     return new \NtSchool\Action\CheckOutAction($renderer);
 });
 
-$container->set(\NtSchool\Action\ShopRegistrationAction::class, function () use ($renderer) {
-    return new \NtSchool\Action\ShopRegistrationAction($renderer);
+$container->set(\NtSchool\Action\ShopRegistrationAction::class, function () use ($renderer, $container) {
+    return new \NtSchool\Action\ShopRegistrationAction($renderer, $container->get('logger'));
 });
 
 $container->set(\NtSchool\Action\TimeTableAction::class, function () use ($renderer) {

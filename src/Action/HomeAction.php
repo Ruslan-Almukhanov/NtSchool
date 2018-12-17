@@ -3,24 +3,25 @@
 namespace NtSchool\Action;
 
 use Psr\Http\Message\ServerRequestInterface;
-use NtSchool\loggerInterface;
+use Ruslan\Notifier\Adapter\TelegramNotifierAdapter;
+use Ruslan\Notifier\NotifierAdapterInterface;
 
 
 final class HomeAction
 {
     /** @var \Illuminate\View\Factory */
     protected $renderer;
-    protected $logger;
+    protected $notifier;
 
-    public function __construct($view, LoggerInterface $logger)
+    public function __construct($view, TelegramNotifierAdapter $notifier)
     {
         $this->renderer = $view;
-        $this->logger = $logger;
+        $this->notifier = $notifier;
     }
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $this->logger->error('some error');
+        $this->notifier->error('new message from my library');
         return $this->renderer->make('index',[
             'title' => 'Главная страница'
         ]);

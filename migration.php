@@ -65,9 +65,15 @@ require_once 'config/database.php';
 //    $post->save();
 //}
 
-Illuminate\Database\Capsule\Manager::schema()->create('comments', function ($table) {
-    $table->increments('id');
-    $table->string('author');
-    $table->string('content');
-    $table->timestamps();
-});
+//
+
+//Illuminate\Database\Capsule\Manager::schema()->create('users', function ($table) {
+//    $table->increments('id');
+//    $table->string('first_name');
+//    $table->string('last_name');
+//    $table->string('email')->unique();
+//    $table->string('phone')->unique();
+//    $table->string('password');
+//    $table->string('password_confirmation');
+//    $table->timestamps();
+//});

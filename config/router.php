@@ -9,6 +9,7 @@ $router->get('product', '/product{id}', \NtSchool\Action\ProductAction::class);
 $router->get('shop-cart', '/shop-cart', \NtSchool\Action\ShopCartAction::class);
 $router->get('checkout', '/checkout', \NtSchool\Action\CheckOutAction::class);
 $router->get('registration', '/registration', \NtSchool\Action\ShopRegistrationAction::class);
+$router->post('registration-up', '/registration', \NtSchool\Action\ShopRegistrationAction::class);
 $router->get('timetable', '/timetable', \NtSchool\Action\TimeTableAction::class);
 $router->get('team', '/team', \NtSchool\Action\TeamAction::class);
 $router->get('team-single', '/team-single', \NtSchool\Action\TeamSingleAction::class);

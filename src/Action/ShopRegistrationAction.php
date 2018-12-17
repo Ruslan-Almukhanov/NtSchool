@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Request;
 use NtSchool\Model\User;
 use Psr\Http\Message\ServerRequestInterface;
 use Ruslan\Notifier\Adapter\TelegramNotifierAdapter;
+use Ruslan\Notifier\NotifierObserverInterface;
 
 final class ShopRegistrationAction
 {
@@ -15,7 +16,7 @@ final class ShopRegistrationAction
     protected $renderer;
     protected $notifier;
 
-    public function __construct($view, TelegramNotifierAdapter $notifier)
+    public function __construct($view, NotifierObserverInterface $notifier)
     {
         $this->renderer = $view;
         $this->notifier = $notifier;

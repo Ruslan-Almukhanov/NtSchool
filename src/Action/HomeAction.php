@@ -3,8 +3,8 @@
 namespace NtSchool\Action;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Ruslan\Notifier\Adapter\TelegramNotifierAdapter;
-use Ruslan\Notifier\NotifierAdapterInterface;
+
+use Ruslan\Notifier\NotifierObserverInterface;
 
 
 final class HomeAction
@@ -13,7 +13,7 @@ final class HomeAction
     protected $renderer;
     protected $notifier;
 
-    public function __construct($view, TelegramNotifierAdapter $notifier)
+    public function __construct($view, NotifierObserverInterface $notifier)
     {
         $this->renderer = $view;
         $this->notifier = $notifier;

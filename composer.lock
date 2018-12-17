@@ -1397,12 +1397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ruslan-Almukhanov/Notifier.git",
-                "reference": "75fc50fdfd4a581d453b000506002309fdb8995f"
+                "reference": "b8613c32162e695aa5d669f11569225da6858947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ruslan-Almukhanov/Notifier/zipball/75fc50fdfd4a581d453b000506002309fdb8995f",
-                "reference": "75fc50fdfd4a581d453b000506002309fdb8995f",
+                "url": "https://api.github.com/repos/Ruslan-Almukhanov/Notifier/zipball/b8613c32162e695aa5d669f11569225da6858947",
+                "reference": "b8613c32162e695aa5d669f11569225da6858947",
                 "shasum": ""
             },
             "require": {
@@ -1423,7 +1423,7 @@
                 }
             ],
             "description": "Simple notifier",
-            "time": "2018-12-16T12:16:23+00:00"
+            "time": "2018-12-17T10:21:45+00:00"
         },
         {
             "name": "symfony/contracts",

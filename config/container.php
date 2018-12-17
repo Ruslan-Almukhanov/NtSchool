@@ -10,12 +10,12 @@ use Monolog\Handler\StreamHandler;
 $builder = new ContainerBuilder();
 $container = $builder->newInstance();
 
-//$container->set('logger', function() {
-//    $log = new Logger('name');
-//    $log->pushHandler(new StreamHandler(__DIR__ . '/../resources/logs/main.log'));
-//    $notifier = new \Ruslan\Notifier\Adapter\MonologNotifierAdapter($log);
-//    return $notifier;
-//});
+$container->set('file-logger', function() {
+    $log = new Logger('name');
+    $log->pushHandler(new StreamHandler(__DIR__ . '/../resources/logs/main.log'));
+    $notifier = new \Ruslan\Notifier\Adapter\MonologNotifierAdapter($log);
+    return $notifier;
+});
 
 //$container->set('logger', function() {
 //    $logger = new \NtSchool\KatzgrauLogger(
@@ -23,7 +23,7 @@ $container = $builder->newInstance();
 //    return $logger;
 //});
 
-$container->set('logger', function() {
+$container->set('telegram-logger', function() {
     $notifier = new \Ruslan\Notifier\Adapter\TelegramNotifierAdapter(
         '759235133:AAHF2_46P2PPgrtk-LhErTxn5AeoN2zaYOI',
         '428376868'
@@ -31,8 +31,15 @@ $container->set('logger', function() {
     return $notifier;
 });
 
+$container->set('notifier', function () use ($container) {
+   $notifier = new  \Ruslan\Notifier\NotifierObserver();
+   $notifier->add($container->get('file-logger'));
+   $notifier->add($container->get('telegram-logger'));
+   return $notifier;
+});
+
 $container->set(\NtSchool\Action\HomeAction::class, function () use ($renderer, $container) {
-    return new \NtSchool\Action\HomeAction($renderer, $container->get('logger'));
+    return new \NtSchool\Action\HomeAction($renderer, $container->get('notifier'));
 });
 
 $container->set(\NtSchool\Action\ShopMainAction::class, function () use ($renderer) {
@@ -52,7 +59,7 @@ $container->set(\NtSchool\Action\CheckOutAction::class, function () use ($render
 });
 
 $container->set(\NtSchool\Action\ShopRegistrationAction::class, function () use ($renderer, $container) {
-    return new \NtSchool\Action\ShopRegistrationAction($renderer, $container->get('logger'));
+    return new \NtSchool\Action\ShopRegistrationAction($renderer, $container->get('notifier'));
 });
 
 $container->set(\NtSchool\Action\TimeTableAction::class, function () use ($renderer) {

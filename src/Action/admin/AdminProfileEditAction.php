@@ -1,9 +1,10 @@
 <?php
-namespace NtSchool\Action;
+namespace NtSchool\Action\admin;
+
 
 use Psr\Http\Message\ServerRequestInterface;
 
-final class AdminAction
+final class AdminProfileEditAction
 {
     /** @var \Illuminate\View\Factory */
     protected $renderer;
@@ -15,7 +16,6 @@ final class AdminAction
 
     public function __invoke(ServerRequestInterface $request)
     {
-
-        return $this->renderer->make('admin.admin');
+        return $this->renderer->make('admin.admin-edit');
     }
 }

@@ -20,14 +20,6 @@ final class BlogAction
 
     public function __invoke(ServerRequestInterface $request)
     {
-//        $category = Category::where('key', '=', $request->getAttribute('category'));
-//
-//        $page = $request->getQueryParams()['page'] ?? 1;
-//        $postsPerPage = 3;
-//        $offset = $page == 1 ? 0 : ($page - 1) * $postsPerPage;
-//
-//        $total = Manager::select('select Count(*) as counter from posts');
-
         $categories = Category::all();
 
         $page = $request->getQueryParams()['page'] ?? 1;

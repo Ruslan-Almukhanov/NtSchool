@@ -17,6 +17,8 @@
         "monolog/monolog": "^1.24",
         "maxbanton/cwh": "1.0",
         "katzgrau/klogger": "^1.2",
-        "ruslan/notifier": "dev-master"
+        "ruslan/notifier": "^v1.4.1",
+        "illuminate/validation": "^5.7",
+        "illuminate/translation": "^5.7"
     }
 }

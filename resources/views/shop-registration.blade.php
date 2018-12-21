@@ -30,39 +30,64 @@
 
                     <div class="col-sm-6">
                         <div class="form-group validate-required" id="billing_first_name_field">
+                        @if($messages !== null && $messages->has('name'))
+                            @foreach($messages->get('name') as $message)
+                                <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_first_name" class="control-label">
                                 <span class="grey">First Name:</span>
                                 <span class="required">*</span>
                             </label>
 
-                            <input type="text" class="form-control " name="name" id="billing_first_name" placeholder="" value="">
+                            <input type="text" class="form-control " name="name" id="billing_first_name" placeholder="" value="@if(isset($name)){{ $name }}@elseif(isset($user)){{ $user->first_name }}@endif">
                         </div>
                         <div class="form-group validate-required" id="billing_last_name_field">
+                            @if($messages !== null && $messages->has('last_name'))
+                                @foreach($messages->get('last_name') as $message)
+                                    <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_last_name" class="control-label">
                                 <span class="grey">Last Name:</span>
                                 <span class="required">*</span>
                             </label>
 
-                            <input type="text" class="form-control " name="last_name" id="billing_last_name" placeholder="" value="">
+                            <input type="text" class="form-control " name="last_name" id="billing_last_name" placeholder="" value="@if(isset($last_name)){{ $last_name }}@elseif(isset($user)){{ $user->last_name }}@endif">
 
                         </div>
                         <div class="form-group validate-required validate-email" id="billing_email_field">
+                            @if($messages !== null && $messages->has('email'))
+                                @foreach($messages->get('email') as $message)
+                                    <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_email" class="control-label">
                                 <span class="grey">Email Address:</span>
                                 <span class="required">*</span>
                             </label>
 
-                            <input type="text" class="form-control " name="email" id="billing_email" placeholder="" value="">
+                            <input type="text" class="form-control " name="email" id="billing_email" placeholder="" value="@if(isset($email)){{ $email }}@elseif(isset($user)){{ $user->email }}@endif">
 
                         </div>
                         <div class="form-group validate-required validate-phone" id="billing_phone_field">
+                            @if($messages !== null && $messages->has('phone'))
+                                @foreach($messages->get('phone') as $message)
+                                    <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_phone" class="control-label">
                                 <span class="grey">Phone:</span>
                                 <span class="required">*</span>
                             </label>
-                            <input type="text" class="form-control " name="phone" id="billing_phone" placeholder="" value="">
+                            <input type="text" class="form-control " name="phone" id="billing_phone" placeholder="" value="@if(isset($phone)){{ $phone }}@elseif(isset($user)){{ $user->phone }}@endif">
                         </div>
                         <div class="form-group" id="billing_password_field">
+                            @if($messages !== null && $messages->has('password'))
+                                @foreach($messages->get('password') as $message)
+                                    <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_password" class="control-label">
                                 <span class="grey">Password:</span>
                                 <span class="required">*</span>
@@ -70,11 +95,16 @@
                             <input type="text" class="form-control " name="password" id="billing_password" placeholder="" value="">
                         </div>
                         <div class="form-group" id="billing_password2_field">
+                            @if($messages !== null && $messages->has('password_confirmation'))
+                                @foreach($messages->get('password_confirmation') as $message)
+                                    <p style="color:red">{{ $message }}</p>
+                                @endforeach
+                            @endif
                             <label for="billing_password2" class="control-label">
                                 <span class="grey">Confirm Password:</span>
                                 <span class="required">*</span>
                             </label>
-                            <input type="text" class="form-control " name="passwordConfirmation" id="billing_password2" placeholder="" value="">
+                            <input type="text" class="form-control " name="password_confirmation" id="billing_password2" placeholder="" value="">
                         </div>
 
                         {{--<div class="form-group" id="billing_company_field">--}}

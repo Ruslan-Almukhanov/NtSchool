@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'config/dotenv.php';
 require_once 'config/database.php';
 
 //Illuminate\Database\Capsule\Manager::schema()->create('products', function ($table) {
@@ -77,3 +78,12 @@ require_once 'config/database.php';
 //    $table->string('password_confirmation');
 //    $table->timestamps();
 //});
+
+Illuminate\Database\Capsule\Manager::schema()->create('admins', function ($table) {
+    $table->increments('id');
+    $table->string('name');
+    $table->string('email')->unique();
+    $table->string('password');
+    $table->string('password_confirmation');
+    $table->timestamps();
+});

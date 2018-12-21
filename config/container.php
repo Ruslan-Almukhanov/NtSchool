@@ -17,11 +17,20 @@ $container->set('file-logger', function() {
     return $notifier;
 });
 
-//$container->set('logger', function() {
-//    $logger = new \NtSchool\KatzgrauLogger(
-//        new Katzgrau\KLogger\Logger(__DIR__ . '/../resources/logs'));
-//    return $logger;
-//});
+$container->set('validator', function () use ($capsule) {
+    $filesystem = new Illuminate\Filesystem\Filesystem();
+    $loader = new Illuminate\Translation\FileLoader($filesystem, dirname(dirname(__FILE__)) . '/resources/lang');
+    $loader->addNamespace('lang', dirname(dirname(__FILE__)) . '/resources/lang');
+    $loader->load($lang = 'ru', $group = 'validation', $namespace = 'lang');
+
+    $factory = new Illuminate\Translation\Translator($loader, 'ru');
+    $validator = new Illuminate\Validation\Factory($factory);
+
+    $databasePresenceVerifier = new \Illuminate\Validation\DatabasePresenceVerifier($capsule->getDatabaseManager());
+    $validator->setPresenceVerifier($databasePresenceVerifier);
+
+    return $validator;
+});
 
 $container->set('telegram-logger', function() {
     $notifier = new \Ruslan\Notifier\Adapter\TelegramNotifierAdapter(
@@ -59,7 +68,7 @@ $container->set(\NtSchool\Action\CheckOutAction::class, function () use ($render
 });
 
 $container->set(\NtSchool\Action\ShopRegistrationAction::class, function () use ($renderer, $container) {
-    return new \NtSchool\Action\ShopRegistrationAction($renderer, $container->get('notifier'));
+    return new \NtSchool\Action\ShopRegistrationAction($renderer, $container->get('notifier'),$container->get('validator'));
 });
 
 $container->set(\NtSchool\Action\TimeTableAction::class, function () use ($renderer) {
@@ -108,6 +117,22 @@ $container->set(\NtSchool\Action\ContactsAction::class, function () use ($render
 
 $container->set(\NtSchool\Action\AdminAction::class, function () use ($renderer) {
     return new \NtSchool\Action\AdminAction($renderer);
+});
+
+$container->set(\NtSchool\Action\admin\AdminRegistrationAction::class, function () use ($renderer, $container) {
+    return new \NtSchool\Action\admin\AdminRegistrationAction($renderer,$container->get('notifier'),$container->get('validator'));
+});
+
+$container->set(\NtSchool\Action\admin\AdminSignInAction::class, function () use ($renderer, $container) {
+    return new \NtSchool\Action\admin\AdminSignInAction($renderer,$container->get('validator'));
+});
+
+$container->set(\NtSchool\Action\admin\AdminProfileEditAction::class, function () use ($renderer) {
+    return new \NtSchool\Action\admin\AdminProfileEditAction($renderer);
+});
+
+$container->set(\NtSchool\Action\admin\AdminUsersListAction::class, function () use ($renderer) {
+    return new \NtSchool\Action\admin\AdminUsersListAction($renderer);
 });
 
 

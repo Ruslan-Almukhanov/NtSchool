@@ -1,4 +1,4 @@
-@extends('admin.admin-layout')
+@extends('admin.layouts.admin-forms-layout')
 @section('content')
 <!-- template sections -->
 <section class="ls section_padding_top_100 section_padding_bottom_100 section_full_height">

@@ -1,6 +1,8 @@
 <?php
 namespace NtSchool\Action;
 
+use NtSchool\Model\Admin;
+use NtSchool\Model\Comment;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class AdminAction
@@ -15,7 +17,17 @@ final class AdminAction
 
     public function __invoke(ServerRequestInterface $request)
     {
+        $adminIden = $request->getAttributes();
 
-        return $this->renderer->make('admin.admin');
+        $id = $adminIden['id'];
+
+        $adminInfo = Admin::find($id);
+
+        $comments = Comment::all();
+
+        return $this->renderer->make('admin.admin',[
+            'adminInfo' => $adminInfo,
+            'comments' => $comments
+        ]);
     }
 }

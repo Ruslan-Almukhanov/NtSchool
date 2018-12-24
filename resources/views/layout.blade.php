@@ -163,16 +163,7 @@
                                         <a href="index.html">Home</a>
                                         <ul>
                                             <li>
-                                                <a href="index.html">MultiPage</a>
-                                            </li>
-                                            <li>
-                                                <a href="index_static.html">Static Intro</a>
-                                            </li>
-                                            <li>
-                                                <a href="index_singlepage.html">Single Page</a>
-                                            </li>
-                                            <li>
-                                                <a href="admin_index.html">Admin Dashboard</a>
+                                                <a href="/admin">Admin Dashboard</a>
                                             </li>
                                         </ul>
                                     </li>

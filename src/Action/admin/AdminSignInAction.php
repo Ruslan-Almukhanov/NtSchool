@@ -43,13 +43,14 @@ final class AdminSignInAction
             if ($admins > 0) {
                 foreach ($admins as $admin) {
                     $adminPassword = $admin->password;
+                    $dataId = $admin->id;
                 }
 
                 if (strlen($data['password']) > 7) {
                     $verify = password_verify($data['password'], $adminPassword);
 
                     if($verify == 'TRUE') {
-                        header("Location:/admin");
+                        header("Location:/admin/$dataId");
                     } else {
                         $messagesPassword = 'не верный пароль';
                     }

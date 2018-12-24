@@ -1,4 +1,4 @@
-@extends('admin.admin-layout')
+@extends('admin.layouts.admin-layout')
 @section('content')
     <!-- template sections -->
 

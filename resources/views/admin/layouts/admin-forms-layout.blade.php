@@ -7,7 +7,7 @@
 <!--<![endif]-->
 
 <head>
-    <title>Pet Salon @hasSection ('title') | @yield('title')@endif</title>
+    <title>Pet Salon</title>
     <meta charset="utf-8">
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,7 +49,7 @@
 			</span>
     </button>
     <div class="widget widget_search">
-        <form method="get" class="searchform search-form form-inline" action="./">
+        <form method="get" class="searchform search-form form-inline" action="../">
             <div class="form-group">
                 <input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input">
             </div>
@@ -77,7 +77,7 @@
     <!-- <div class="ls with_padding"> -->
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
-            <form class="with_padding contact-form" method="post" action="./">
+            <form class="with_padding contact-form" method="post" action="../">
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>Contact Admin</h3>
@@ -122,7 +122,7 @@
 <div id="canvas">
     <div id="box_wrapper">
 
-        @yield('content')
+@yield('content')
 
     </div>
     <!-- eof #box_wrapper -->
@@ -209,8 +209,8 @@
 
 
 <!-- template init -->
-<script src="/js/compressed.js"></script>
-<script src="/js/main.js"></script>
+<script src="js/compressed.js"></script>
+<script src="js/main.js"></script>
 
 <!-- dashboard libs -->
 

@@ -39,18 +39,14 @@ final class AdminSignInAction
                 $messages = $e->validator->errors();
             }
             $adminPassword = NULL;
-            $admins = Admin::where('email', $data['email'])->get();
-            if ($admins > 0) {
-                foreach ($admins as $admin) {
-                    $adminPassword = $admin->password;
-                    $dataId = $admin->id;
-                }
+            $admins = Admin::where('email', $data['email'])->first();
+            if ($admins == TRUE) {
 
                 if (strlen($data['password']) > 7) {
-                    $verify = password_verify($data['password'], $adminPassword);
+                    $verify = password_verify($data['password'], $admins->password);
 
                     if($verify == 'TRUE') {
-                        header("Location:/admin/$dataId");
+                        header("Location:/admin/$admins->id");
                     } else {
                         $messagesPassword = 'не верный пароль';
                     }
